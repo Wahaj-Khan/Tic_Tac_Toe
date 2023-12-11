@@ -1,13 +1,26 @@
-import React from 'react'
-import './Card.css'
+import React, { useState } from "react";
+import "./Card.css";
 
 const Card = (props) => {
-  return (
-  
-        <div className='card'>
-            <text style={{color: 'black'}}>{props.num}</text>
-        </div>
-  )
-}
+  const [backgroundColor, setBackgroundColor] = useState("rgb(255, 255, 255)");
 
-export default Card
+  const handleClick = () => {
+    // Update the background color based on the player
+    if (props.player === 1) {
+      setBackgroundColor("rgb(149, 255, 149)");
+    } else if (props.player === 2) {
+      setBackgroundColor("rgb(217, 0, 0)");
+    }
+
+    // Pass the card number to the parent component
+    props.onClick(props.num);
+  };
+
+  return (
+    <div className="card" style={{ backgroundColor }} onClick={handleClick}>
+      <text style={{ color: "black" }}>{props.num}</text>
+    </div>
+  );
+};
+
+export default Card;
