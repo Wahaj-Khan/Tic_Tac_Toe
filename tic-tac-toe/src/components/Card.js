@@ -18,7 +18,7 @@ const Card = (props) => {
 
   return (
     <div className="card" style={{ backgroundColor }} onClick={handleClick}>
-      <text style={{ color: "black" }}>{props.num}</text>
+      <p style={{ color: "black" }}>{props.num}</p>
     </div>
   );
 };
