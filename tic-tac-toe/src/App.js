@@ -1,5 +1,5 @@
 // In App.js
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import Card from "./components/Card";
 
@@ -7,6 +7,7 @@ function App() {
   const [player1, setPlayer1] = useState([]);
   const [player2, setPlayer2] = useState([]);
   const [tempe, setTempe] = useState(true);
+  const [childblock, setChildBlock] = useState("o");
   const [currentPlayer, setCurrentPlayer] = useState(1);
   const pairs = [
     [1, 2, 3],
@@ -18,7 +19,7 @@ function App() {
     [1, 5, 9],
     [3, 5, 7],
   ];
-  var temp = [];
+
   const handleCardClick = (num) => {
     if (currentPlayer === 1) {
       setPlayer1((prevPlayer1) => [...prevPlayer1, num]);
@@ -30,11 +31,6 @@ function App() {
 
     // Switch to the next player
     setCurrentPlayer((prevPlayer) => (prevPlayer === 1 ? 2 : 1));
-    if (tempe === true) {
-      checkPlayerAgainstPairs(player1);
-    } else {
-      checkPlayerAgainstPairs(player2);
-    }
   };
 
   function checkPlayerAgainstPairs(player) {
@@ -54,6 +50,7 @@ function App() {
             );
             setPlayer1([]);
             setPlayer2([]);
+            setChildBlock("q");
             break;
           }
         }
@@ -66,6 +63,13 @@ function App() {
       return;
     }
   }
+  useEffect(() => {
+    if (tempe === true) {
+      checkPlayerAgainstPairs(player1);
+    } else {
+      checkPlayerAgainstPairs(player2);
+    }
+  }, [player1, player2]);
 
   return (
     <div className="mainContainer">
@@ -76,21 +80,66 @@ function App() {
           <p>Current Player: {currentPlayer}</p>
         </div>
         <div style={{ display: "flex" }}>
-          <Card num={"1"} onClick={handleCardClick} player={currentPlayer} />
-          <Card num={"2"} onClick={handleCardClick} player={currentPlayer} />
-          <Card num={"3"} onClick={handleCardClick} player={currentPlayer} />
+          <Card
+            num={"1"}
+            onClick={handleCardClick}
+            player={currentPlayer}
+            resetterState={childblock}
+          />
+          <Card
+            num={"2"}
+            onClick={handleCardClick}
+            player={currentPlayer}
+            resetterState={childblock}
+          />
+          <Card
+            num={"3"}
+            onClick={handleCardClick}
+            player={currentPlayer}
+            resetterState={childblock}
+          />
         </div>
 
         <div style={{ display: "flex" }}>
-          <Card num={"4"} onClick={handleCardClick} player={currentPlayer} />
-          <Card num={"5"} onClick={handleCardClick} player={currentPlayer} />
-          <Card num={"6"} onClick={handleCardClick} player={currentPlayer} />
+          <Card
+            num={"4"}
+            onClick={handleCardClick}
+            player={currentPlayer}
+            resetterState={childblock}
+          />
+          <Card
+            num={"5"}
+            onClick={handleCardClick}
+            player={currentPlayer}
+            resetterState={childblock}
+          />
+          <Card
+            num={"6"}
+            onClick={handleCardClick}
+            player={currentPlayer}
+            resetterState={childblock}
+          />
         </div>
 
         <div style={{ display: "flex" }}>
-          <Card num={"7"} onClick={handleCardClick} player={currentPlayer} />
-          <Card num={"8"} onClick={handleCardClick} player={currentPlayer} />
-          <Card num={"9"} onClick={handleCardClick} player={currentPlayer} />
+          <Card
+            num={"7"}
+            onClick={handleCardClick}
+            player={currentPlayer}
+            resetterState={childblock}
+          />
+          <Card
+            num={"8"}
+            onClick={handleCardClick}
+            player={currentPlayer}
+            resetterState={childblock}
+          />
+          <Card
+            num={"9"}
+            onClick={handleCardClick}
+            player={currentPlayer}
+            resetterState={childblock}
+          />
         </div>
       </div>
     </div>

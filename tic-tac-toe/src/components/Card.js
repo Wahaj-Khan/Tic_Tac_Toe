@@ -2,23 +2,22 @@ import React, { useState } from "react";
 import "./Card.css";
 
 const Card = (props) => {
-  const [backgroundColor, setBackgroundColor] = useState("rgb(255, 255, 255)");
+  const [ticToe, setTicToe] = useState(props.resetterState);
 
   const handleClick = () => {
     // Update the background color based on the player
     if (props.player === 1) {
-      setBackgroundColor("rgb(149, 255, 149)");
+      setTicToe("✔️");
     } else if (props.player === 2) {
-      setBackgroundColor("rgb(217, 0, 0)");
+      setTicToe("❌");
     }
-
     // Pass the card number to the parent component
     props.onClick(props.num);
   };
 
   return (
-    <div className="card" style={{ backgroundColor }} onClick={handleClick}>
-      <p style={{ color: "black" }}>{props.num}</p>
+    <div className="card" onClick={handleClick}>
+      <h2>{ticToe}</h2>
     </div>
   );
 };
