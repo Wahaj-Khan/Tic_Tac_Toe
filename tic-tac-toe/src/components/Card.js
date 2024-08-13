@@ -1,13 +1,25 @@
-import React from 'react'
-import './Card.css'
+import React, { useState } from "react";
+import "./Card.css";
 
 const Card = (props) => {
-  return (
-  
-        <div className='card'>
-            <text style={{color: 'black'}}>{props.num}</text>
-        </div>
-  )
-}
+  const [ticToe, setTicToe] = useState(props.resetterState);
 
-export default Card
+  const handleClick = () => {
+    // Update the background color based on the player
+    if (props.player === 1) {
+      setTicToe("✔️");
+    } else if (props.player === 2) {
+      setTicToe("❌");
+    }
+    // Pass the card number to the parent component
+    props.onClick(props.num);
+  };
+
+  return (
+    <div className="card" onClick={handleClick}>
+      <h2>{ticToe}</h2>
+    </div>
+  );
+};
+
+export default Card;
